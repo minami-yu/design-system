@@ -1,6 +1,7 @@
 /* Radio Button Styles with Design Token Integration */
 
 /* CSS Custom Properties for Design Tokens */
+/* These will be dynamically injected by the Radio component */
 :root {
   --radio-color-primary: #61892f;
   --radio-color-secondary: #ffa500;
