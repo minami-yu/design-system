@@ -151,11 +151,4 @@
   outline: none;
 }
 
-/* Dynamic token injection - these will be set by JavaScript */
-.radio-button[data-primary-color] {
-  --radio-color-primary: attr(data-primary-color);
-}
-
-.radio-button[data-secondary-color] {
-  --radio-color-secondary: attr(data-secondary-color);
-}
+/* Design tokens are dynamically injected via JavaScript using injectRadioTokens() */
