@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import tokens from '../src/tokens/tokens.json';
+import { radioTokens, injectRadioTokens } from './radio-tokens';
 import './radio.css';
-
-// Extract colors from design tokens
-const colors = {
-  primary: tokens.core.Brand_Chlorophyll.value, // #61892f
-  secondary: tokens.core.Brand_Sunrise.value,   // #ffa500
-  default: '#222629' // Using standard text color for default
-};
 
 /** Radio button component matching the design system specifications */
 export const Radio = ({
@@ -21,6 +14,10 @@ export const Radio = ({
   value,
   ...props
 }) => {
+  // Inject design tokens as CSS custom properties
+  useEffect(() => {
+    injectRadioTokens();
+  }, []);
   const handleChange = (event) => {
     if (!disabled && onChange) {
       onChange(event);
