@@ -1,61 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Radio as MuiRadio, styled } from '@mui/material';
-
-const StyledRadio = styled(MuiRadio)(({ theme, size, color }) => {
-  const sizes = {
-    small: '20px',
-    medium: '24px', 
-    large: '28px'
-  };
-
-  const colors = {
-    primary: '#61892F',
-    secondary: '#FFA500',
-    default: '#222629'
-  };
-
-  const hoverColors = {
-    primary: 'rgba(97, 137, 47, 0.04)',
-    secondary: 'rgba(255, 165, 0, 0.04)',
-    default: 'rgba(34, 38, 41, 0.04)'
-  };
-
-  const focusColors = {
-    primary: 'rgba(97, 137, 47, 0.30)',
-    secondary: 'rgba(255, 165, 0, 0.30)',
-    default: 'rgba(34, 38, 41, 0.12)'
-  };
-
-  return {
-    padding: '9px',
-    '& .MuiSvgIcon-root': {
-      width: sizes[size],
-      height: sizes[size],
-    },
-    '&:hover': {
-      backgroundColor: hoverColors[color],
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: focusColors[color],
-    },
-    '&.Mui-disabled': {
-      '& .MuiSvgIcon-root': {
-        color: 'rgba(34, 38, 41, 0.38)',
-      },
-    },
-    '& .MuiSvgIcon-root': {
-      color: color === 'default' 
-        ? 'rgba(34, 38, 41, 0.6)' 
-        : colors[color],
-    },
-    '&.Mui-checked .MuiSvgIcon-root': {
-      color: color === 'default' 
-        ? 'rgba(34, 38, 41, 0.6)' 
-        : colors[color],
-    },
-  };
-});
+import './radio.css';
 
 /** Radio button component matching the design system specifications */
 export const Radio = ({
@@ -68,17 +13,45 @@ export const Radio = ({
   value,
   ...props
 }) => {
+  const handleChange = (event) => {
+    if (!disabled && onChange) {
+      onChange(event);
+    }
+  };
+
+  const classNames = [
+    'radio-button',
+    `radio-button--${size}`,
+    `radio-button--${color}`,
+    checked ? 'radio-button--checked' : 'radio-button--unchecked',
+    disabled ? 'radio-button--disabled' : 'radio-button--enabled'
+  ].join(' ');
+
   return (
-    <StyledRadio
-      checked={checked}
-      disabled={disabled}
-      size={size}
-      color={color}
-      onChange={onChange}
-      name={name}
-      value={value}
-      {...props}
-    />
+    <label className={classNames}>
+      <input
+        type="radio"
+        checked={checked}
+        disabled={disabled}
+        onChange={handleChange}
+        name={name}
+        value={value}
+        className="radio-button__input"
+        {...props}
+      />
+      <span className="radio-button__icon">
+        {checked ? (
+          <svg viewBox="0 0 24 24" className="radio-button__svg">
+            <circle cx="12" cy="12" r="5" className="radio-button__inner-circle" />
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" className="radio-button__outer-circle" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="radio-button__svg">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" className="radio-button__outer-circle" />
+          </svg>
+        )}
+      </span>
+    </label>
   );
 };
 
