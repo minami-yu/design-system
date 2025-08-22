@@ -1,3 +1,4 @@
+import React from 'react';
 import { fn } from 'storybook/test';
 import { Radio } from './Radio';
 
