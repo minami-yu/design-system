@@ -10,13 +10,15 @@ export const radioTokens = {
     defaultAlpha: 'rgba(34, 38, 41, 0.6)',            // Default with transparency
   },
   hover: {
-    primary: 'rgba(97, 137, 47, 0.04)',
-    secondary: 'rgba(255, 165, 0, 0.04)',
+    // Convert hex colors to rgba with 0.04 opacity
+    primary: `rgba(${parseInt(tokens.core.Brand_Chlorophyll.value.slice(1,3), 16)}, ${parseInt(tokens.core.Brand_Chlorophyll.value.slice(3,5), 16)}, ${parseInt(tokens.core.Brand_Chlorophyll.value.slice(5,7), 16)}, 0.04)`,
+    secondary: `rgba(${parseInt(tokens.core.Brand_Sunrise.value.slice(1,3), 16)}, ${parseInt(tokens.core.Brand_Sunrise.value.slice(3,5), 16)}, ${parseInt(tokens.core.Brand_Sunrise.value.slice(5,7), 16)}, 0.04)`,
     default: 'rgba(34, 38, 41, 0.04)',
   },
   focus: {
-    primary: 'rgba(97, 137, 47, 0.30)',
-    secondary: 'rgba(255, 165, 0, 0.30)',
+    // Convert hex colors to rgba with 0.30 opacity
+    primary: `rgba(${parseInt(tokens.core.Brand_Chlorophyll.value.slice(1,3), 16)}, ${parseInt(tokens.core.Brand_Chlorophyll.value.slice(3,5), 16)}, ${parseInt(tokens.core.Brand_Chlorophyll.value.slice(5,7), 16)}, 0.30)`,
+    secondary: `rgba(${parseInt(tokens.core.Brand_Sunrise.value.slice(1,3), 16)}, ${parseInt(tokens.core.Brand_Sunrise.value.slice(3,5), 16)}, ${parseInt(tokens.core.Brand_Sunrise.value.slice(5,7), 16)}, 0.30)`,
     default: 'rgba(34, 38, 41, 0.12)',
   }
 };
