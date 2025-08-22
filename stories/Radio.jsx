@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import tokens from '../src/tokens/tokens.json';
 import './radio.css';
+
+// Extract colors from design tokens
+const colors = {
+  primary: tokens.core.Brand_Chlorophyll.value, // #61892f
+  secondary: tokens.core.Brand_Sunrise.value,   // #ffa500
+  default: '#222629' // Using standard text color for default
+};
 
 /** Radio button component matching the design system specifications */
 export const Radio = ({
