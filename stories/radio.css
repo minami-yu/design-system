@@ -1,0 +1,154 @@
+/* Radio Button Styles with Design Token Integration */
+
+/* CSS Custom Properties for Design Tokens */
+/* These will be dynamically injected by the Radio component */
+:root {
+  --radio-color-primary: #61892f;
+  --radio-color-secondary: #ffa500;
+  --radio-color-default: #222629;
+  --radio-color-disabled: rgba(34, 38, 41, 0.38);
+  --radio-color-default-alpha: rgba(34, 38, 41, 0.6);
+  --radio-hover-primary: rgba(97, 137, 47, 0.04);
+  --radio-hover-secondary: rgba(255, 165, 0, 0.04);
+  --radio-hover-default: rgba(34, 38, 41, 0.04);
+  --radio-focus-primary: rgba(97, 137, 47, 0.30);
+  --radio-focus-secondary: rgba(255, 165, 0, 0.30);
+  --radio-focus-default: rgba(34, 38, 41, 0.12);
+}
+
+.radio-button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: 9px;
+  border-radius: 100px;
+  transition: background-color 0.2s ease;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.radio-button__svg {
+  display: block;
+  transition: color 0.2s ease;
+}
+
+/* Size variants */
+.radio-button--small .radio-button__svg {
+  width: 20px;
+  height: 20px;
+}
+
+.radio-button--medium .radio-button__svg {
+  width: 24px;
+  height: 24px;
+}
+
+.radio-button--large .radio-button__svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Color variants - Unchecked states */
+.radio-button--default.radio-button--unchecked .radio-button__outer-circle {
+  stroke: var(--radio-color-default-alpha);
+}
+
+.radio-button--primary.radio-button--unchecked .radio-button__outer-circle {
+  stroke: var(--radio-color-default-alpha);
+}
+
+.radio-button--secondary.radio-button--unchecked .radio-button__outer-circle {
+  stroke: var(--radio-color-default-alpha);
+}
+
+/* Color variants - Checked states */
+.radio-button--default.radio-button--checked .radio-button__outer-circle {
+  stroke: var(--radio-color-default-alpha);
+}
+
+.radio-button--default.radio-button--checked .radio-button__inner-circle {
+  fill: var(--radio-color-default-alpha);
+}
+
+.radio-button--primary.radio-button--checked .radio-button__outer-circle {
+  stroke: var(--radio-color-primary);
+}
+
+.radio-button--primary.radio-button--checked .radio-button__inner-circle {
+  fill: var(--radio-color-primary);
+}
+
+.radio-button--secondary.radio-button--checked .radio-button__outer-circle {
+  stroke: var(--radio-color-secondary);
+}
+
+.radio-button--secondary.radio-button--checked .radio-button__inner-circle {
+  fill: var(--radio-color-secondary);
+}
+
+/* Disabled states */
+.radio-button--disabled {
+  cursor: not-allowed;
+}
+
+.radio-button--disabled .radio-button__outer-circle {
+  stroke: var(--radio-color-disabled) !important;
+}
+
+.radio-button--disabled .radio-button__inner-circle {
+  fill: var(--radio-color-disabled) !important;
+}
+
+/* Interactive states - Hover */
+.radio-button--enabled:hover {
+  background-color: var(--radio-hover-default);
+}
+
+.radio-button--enabled.radio-button--primary:hover {
+  background-color: var(--radio-hover-primary);
+}
+
+.radio-button--enabled.radio-button--secondary:hover {
+  background-color: var(--radio-hover-secondary);
+}
+
+/* Interactive states - Focus */
+.radio-button--enabled:focus-within {
+  background-color: var(--radio-focus-default);
+}
+
+.radio-button--enabled.radio-button--primary:focus-within {
+  background-color: var(--radio-focus-primary);
+}
+
+.radio-button--enabled.radio-button--secondary:focus-within {
+  background-color: var(--radio-focus-secondary);
+}
+
+/* Focus ring for accessibility */
+.radio-button__input:focus-visible + .radio-button__icon {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* Remove default focus outline */
+.radio-button__input:focus {
+  outline: none;
+}
+
+/* Design tokens are dynamically injected via JavaScript using injectRadioTokens() */
